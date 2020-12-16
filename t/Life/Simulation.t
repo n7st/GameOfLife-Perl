@@ -24,6 +24,8 @@ describe 'Life::Simulation' => sub {
     };
 };
 
+runtests unless caller;
+
 sub new_simulation {
     return Life::Simulation->new({
         dimension => 5,
@@ -49,5 +51,3 @@ GRID
 
     return 1;
 }
-
-runtests unless caller;
