@@ -5,11 +5,12 @@ use Types::Standard qw(ArrayRef InstanceOf Int Str);
 
 use Life::Tile;
 
+has chr_tile_alive => (is => 'ro', isa => Str, required => 1);
+has chr_tile_dead  => (is => 'ro', isa => Str, required => 1);
+
 has tiles => (is => 'ro', isa => ArrayRef[ArrayRef[InstanceOf['Life::Tile']]], lazy => 1, builder => 1);
 
-has dimension      => (is => 'ro', isa => Int, default => 50);
-has chr_tile_alive => (is => 'ro', isa => Str, default => q{#});
-has chr_tile_dead  => (is => 'ro', isa => Str, default => q{ });
+has dimension => (is => 'ro', isa => Int, default => 50);
 
 sub modify_tile_at {
     my $self = shift;

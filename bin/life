@@ -10,8 +10,7 @@ use lib "$FindBin::RealBin/../lib";
 use Life::Simulation;
 
 my $life = Life::Simulation->new({
-    tick_delay => 0.1,
-    seed       => [
+    seed => [
         # Blinker
         { x => 2, y => 1 },
         { x => 2, y => 2 },
@@ -40,7 +39,5 @@ my $life = Life::Simulation->new({
     #    { x => 5, y => 8 },
     #    { x => 5, y => 8 },
     #],
-});
-
-$life->simulate();
+})->run_all;
 
