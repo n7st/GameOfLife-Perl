@@ -106,12 +106,8 @@ sub _alive_neighbours {
     );
 
     foreach my $p (@possible) {
-        if ($self->tiles->[$y]) {
-            if (my $neighbour = $self->tiles->[$p->{y}]->[$p->{x}]) {
-                if ($neighbour->alive) {
-                    $alive_neighbours++;
-                }
-            }
+        if (my $neighbour = $self->tiles->[$p->{y}]->[$p->{x}]) {
+            $alive_neighbours++ if $neighbour->alive;
         }
     }
 
@@ -140,4 +136,56 @@ sub _build_tiles {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+Life::Grid
+
+=head1 DESCRIPTION
+
+=head2 METHODS
+
+=item * C<modify_tile_at()>
+
+Runs a given subroutine on a tile at the given coordinates.
+
+    my $x = 5;
+    my $y = 5;
+
+    $grid->modify_tile_at($x, $y, sub {
+        my $tile = shift;
+
+        $tile->flip();
+    });
+
+=item * C<lifecycle()>
+
+Cycles through the grid's tiles, selecting whether they will be alive during the
+next stage in the simulation.
+
+=item * C<render()>
+
+Returns a stringified version of the grid and its tiles.
+
+    my $output = $grid->render();
+
+=item * C<seed()>
+
+Seeds the grid with the given alive tiles.
+
+    # Seeds a "spinner"
+    $grid->seed([
+        { x => 1, y => 1 },
+        { x => 1, y => 2 },
+        { x => 1, y => 3 },
+    ]);
+
+=over 4
+
+=back
+
+=head1 AUTHOR
+
+L<Mike Jones|mike@netsplit.org.uk>
 

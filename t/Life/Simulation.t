@@ -28,8 +28,9 @@ runtests unless caller;
 
 sub new_simulation {
     return Life::Simulation->new({
-        dimension => 5,
-        seed      => [{ x => 1, y => 1 }],
+        dimension     => 5,
+        seed          => [{ x => 1, y => 1 }],
+        chr_tile_dead => q{O},
     });
 }
 

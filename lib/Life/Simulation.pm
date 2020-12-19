@@ -16,7 +16,7 @@ has seed => (is => 'ro', isa => ArrayRef, required => 1);
 
 has dimension      => (is => 'ro', isa => Int, default => 50);
 has chr_tile_alive => (is => 'ro', isa => Str, default => q{#});
-has chr_tile_dead  => (is => 'ro', isa => Str, default => q{O});
+has chr_tile_dead  => (is => 'ro', isa => Str, default => q{ });
 
 has tick_delay => (is => 'ro', isa => Num, default => 1.00);
 
@@ -71,4 +71,31 @@ sub _build_term {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+Life::Simulation
+
+=head1 DESCRIPTION
+
+=head2 METHODS
+
+=over 4
+
+=item * C<BUILD()>
+
+Runs when the class is built, setting up the grid and initial stage of the
+simulation.
+
+=item * C<on_ticker_tick()>
+
+Runs when the C<ticker> ticks, rendering the grid and choosing the next stage
+of the simulation.
+
+=back
+
+=head1 AUTHOR
+
+L<Mike Jones|mike@netsplit.org.uk>
 
